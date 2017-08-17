@@ -3,13 +3,22 @@
 ### Структура
 
 ```
-- containers/ - Контейнеры
-- environments/ - Окружения (development, production, testing, ...)
-    - <environment>/ - Конфигруация контейнеров окружения
-- www/ – 
-- base.yml
-- <environment>.yml
+- containers/ - Dockerfile-ы контейнров
+- environments/ - окружения (development, production, testing, ...)
+    - <environment>/ - конфигруация контейнеров конкретного окружения
+- www/ – код приложения по умолчанию
+- base.yml – базовая конфигурация docker-compose
+- <environment>.yml – конфигурация docker-compose конкретного окружения
 ```
 
 ### Запуск
 
+```
+$ ./deply.sh <environment> ../path-to-project-code
+```
+
+Первый аргумент – название окружения из папки `environments`.
+
+Второй агрумент – путь до проекта (PHP-кода), по умолчанию имеет значение `./www`.
+
+После запуска выполняется скрипт `bootstrap.sh` в папке проекта, в котором может быть запуск композера, тестов и прочего.

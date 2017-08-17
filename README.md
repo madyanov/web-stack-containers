@@ -4,6 +4,7 @@
 
 ```
 containers - Dockerfile-ы контейнров
+└─── ...
 environments
 └─── <environment>
 │   └───app
@@ -28,8 +29,11 @@ environments
 │   └───redis
 │           redis.conf – настройки Redis
 │
-└─── <environment>
+└─── ...
 www – код тестового приложения
+│   ...
+│
+└───public
 base.yml – базовая конфигурация docker-compose
 <environment>.yml – конфигурация docker-compose конкретного окружения
 ```

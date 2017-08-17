@@ -1,0 +1,50 @@
+version: "3.3"
+services:
+    app:
+        image: app
+        build: ./containers/app
+        links:
+            - mysql
+            - memcached
+            - redis
+        volumes:
+            - ./environments/${COMPOSE_PROJECT_NAME}/app/fpm-global.conf:/etc/php/7.0/fpm/pool.d/00-fpm-global.conf
+            - ./environments/${COMPOSE_PROJECT_NAME}/app/fpm-www.conf:/etc/php/7.0/fpm/pool.d/10-fpm-www.conf
+            - ./environments/${COMPOSE_PROJECT_NAME}/app/php.ini:/etc/php/7.0/fpm/conf.d/00-php.ini
+            - ${APP_ROOT}:/var/www
+        env_file:
+            - ./environments/${COMPOSE_PROJECT_NAME}/app/app.env
+            - ./environments/${COMPOSE_PROJECT_NAME}/mysql/mysql.env
+    memcached:
+        image: memcached
+        build: ./containers/memcached
+        volumes:
+            - ./environments/${COMPOSE_PROJECT_NAME}/memcached/memcached.conf:/etc/memcached.conf
+    mysql:
+        image: mysql
+        build: ./containers/mysql
+        volumes:
+            - ./environments/${COMPOSE_PROJECT_NAME}/mysql/server.cnf:/etc/mysql/mariadb.conf.d/90-server.cnf
+            - mysql_data:/var/lib/mysql
+        env_file:
+            - ./environments/${COMPOSE_PROJECT_NAME}/mysql/mysql.env
+    nginx:
+        image: nginx
+        build: ./containers/nginx
+        links:
+            - app
+        volumes:
+            - ./environments/${COMPOSE_PROJECT_NAME}/nginx/nginx.conf:/etc/nginx/nginx.conf
+            - ./environments/${COMPOSE_PROJECT_NAME}/nginx/sites:/etc/nginx/conf.d:ro
+            - ${APP_ROOT}:/var/www:ro
+            - nginx_cache:/var/cache/nginx
+    redis:
+        image: redis
+        build: ./containers/redis
+        volumes:
+            - ./environments/${COMPOSE_PROJECT_NAME}/redis/redis.conf:/etc/redis/redis.conf
+            - redis_data:/var/lib/redis
+volumes:
+    mysql_data:
+    nginx_cache:
+    redis_data:

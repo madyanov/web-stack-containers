@@ -9,19 +9,20 @@ RUN apt-get update
 
 # Install
 RUN apt-get install -y --no-install-recommends \
+    ca-certificates \
+    git \
+    netcat \
     php-fpm \
+    php-mbstring \
     php-memcached \
-    php-redis \
     php-mysql \
     php-phpdbg \
+    php-redis \
     php-xml \
-    php-mbstring \
     php-zip \
-    zip \
     unzip \
-    git \
     wget \
-    ca-certificates
+    zip
 
 # Install Composer
 RUN wget -O /tmp/composer-setup.php https://getcomposer.org/installer && \

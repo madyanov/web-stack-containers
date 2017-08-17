@@ -3,7 +3,6 @@ MAINTAINER Roman Madyanov <romantaken@gmail.com>
 
 # Prepare
 ENV DEBIAN_FRONTEND=noninteractive
-COPY entrypoint.sh /
 
 RUN apt-get update
 
@@ -17,5 +16,4 @@ RUN apt-get clean && \
     rm -rf /var/lib/apt/lists/*
 
 # Run
-ENTRYPOINT ["/entrypoint.sh"]
 CMD ["memcached", "-u", "memcache", "-m", "128"]

@@ -14,6 +14,8 @@
 ### Запуск
 
 ```
+$ git clone https://github.com/madyanov/web-stack-containers
+$ cd web-stack-containers
 $ ./deply.sh <environment> ../path-to-project-code
 ```
 

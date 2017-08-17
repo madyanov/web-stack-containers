@@ -1,5 +1,7 @@
 Набор Docker-контейнеров для разворачивания веб-приложений, использующих nginx, PHP, MySQL, Memcached, Redis, ~~WebSocket~~.
 
+Контейнеры базируются на Debian Stretch (slim-версия). Приложения устанавливаются из официального стабильного репозитория Debian.
+
 ### Структура
 
 ```
@@ -43,7 +45,6 @@ base.yml – базовая конфигурация docker-compose
 ```
 $ git clone https://github.com/madyanov/web-stack-containers
 $ cd web-stack-containers
-
 $ ./deply.sh <environment> ../path-to-app-code
 ```
 

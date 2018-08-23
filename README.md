@@ -20,7 +20,7 @@
 ├── environments                    # настройки окружений
 |   ├── development                 # настройки development-окружения
 │   |   ├── app
-│   |   |   ├── app.env             # переменные окружения приложения (будут доступны через getenv)
+│   |   |   ├── app.env             # переменные окружения, доступные приложению
 │   |   |   ├── fpm-global.conf     # настройки PHP-FPM
 │   |   |   ├── fpm-www.conf        # настройки пула www
 │   |   |   └── php.ini             # настройки PHP
@@ -29,7 +29,7 @@
 │   |   |   └──memcached.conf       # настройки Memcached
 |   |   |
 │   |   ├── mysql
-|   |   |   ├── mysql.env           # переменные окружения MySQL (user, password, database), доступны приложению
+|   |   |   ├── mysql.env           # переменные окружения MySQL, доступные приложению (user, password, database)
 │   |   |   └── server.cnf          # настройки MySQL
 |   |   |
 │   |   ├── nginx

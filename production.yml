@@ -1,0 +1,10 @@
+version: "3"
+services:
+    mysql:
+        restart: unless-stopped
+        ports:
+            - "3306"
+    nginx:
+        restart: unless-stopped
+        ports:
+            - "8080:8080"

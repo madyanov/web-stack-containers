@@ -13,7 +13,7 @@ try {
         'mysql:host=' . getenv('MYSQL_HOST') . ';port=' . getenv('MYSQL_PORT') . ';dbname=' . getenv('MYSQL_DATABASE'),
         getenv('MYSQL_USER'),
         getenv('MYSQL_PASSWORD'),
-        [ PDO::ATTR_TIMEOUT => 1 ]
+        [ PDO::ATTR_TIMEOUT => 10 ]
     );
 } catch (Exception $e) {
     trigger_error($e->getMessage(), E_USER_WARNING);

@@ -17,8 +17,8 @@
 ├── containers                      # Dockerfile-ы контейнров
 |   └── ...
 |
-├── environments
-|   ├── development
+├── environments                    # настройки окружений
+|   ├── development                 # настройки development-окружения
 │   |   ├── app
 │   |   |   ├── app.env             # переменные окружения приложения (будут доступны через getenv)
 │   |   |   ├── fpm-global.conf     # настройки PHP-FPM
@@ -41,16 +41,18 @@
 │   |   └──redis
 │   |       └── redis.conf          # настройки Redis
 |   |
-│   ├── production
+│   ├── production                  # настройки production-окружения
 |   |   └── ...
 |   |
-|   └── <environment>
+|   └── <environment>               # настройки других окружений
 |
 ├── www                             # код приложения
 |   └── ...
 |
 ├── base.yml                        # базовая конфигурация docker-compose
-└── <environment>.yml               # конфигурация docker-compose конкретного окружения
+├── development.yml                 # конфигурация docker-compose development-окружения
+├── production.yml                  # конфигурация docker-compose production-окружения
+└── <environment>.yml               # конфигурация docker-compose других окружений
 ```
 
 После изменения настроек окружения пересборка контейнеров не требуется, достаточно перезапустить работающие контейнеры.

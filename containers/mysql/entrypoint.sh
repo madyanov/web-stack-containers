@@ -50,4 +50,4 @@ if [ ! -d /var/lib/mysql/mysql ]; then
     echo
 fi
 
-exec dockerize --stdout /var/log/mysql/error.log "$@"
+exec dockerize --stderr /var/log/mysql/error.log "$@"

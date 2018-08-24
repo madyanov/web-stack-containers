@@ -63,7 +63,7 @@
 ```
 $ git clone https://github.com/madyanov/web-stack-containers
 $ cd web-stack-containers
-$ ./deply.sh <environment> ../path-to-app-www-dir
+$ ./start.sh development ../path-to-app-www-dir
 ```
 
 Первый аргумент – название используемого окружения из папки `environments`.

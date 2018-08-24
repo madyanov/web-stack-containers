@@ -33,7 +33,7 @@ if [ ! -d /var/lib/mysql/mysql ]; then
         fi
     fi
 
-    export MYSQL_ROOT_PASSWORD=$(pwgen -1 32)
+    MYSQL_ROOT_PASSWORD=$(pwgen -1 32)
     echo "CREATE USER 'root'@'%' IDENTIFIED BY '$MYSQL_ROOT_PASSWORD';" | mysql
     echo "GRANT ALL ON *.* TO 'root'@'%' WITH GRANT OPTION;" | mysql
     echo "FLUSH PRIVILEGES;" | mysql

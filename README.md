@@ -48,7 +48,11 @@
 |       └── ...
 |
 ├── www                             # код приложения
-|   └── ...
+|   ├── public
+|   |   ├── index.php
+|   |   └── ...
+|   |
+|   └── bootstrap.sh                # скрипт, выполняющийся перед запуском приложения
 |
 ├── base.yml                        # базовая конфигурация docker-compose
 ├── development.yml                 # конфигурация docker-compose development-окружения

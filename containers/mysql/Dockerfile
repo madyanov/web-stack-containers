@@ -7,10 +7,10 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends ca-certificates mariadb-server pwgen wget
 
 ENV DOCKERIZE_VERSION v0.6.1
-RUN wget https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    echo "f3d77239644ecaa53b762c9bfce8e9547399eea4 dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz" | sha1sum -c - && \
-    tar -C /usr/local/bin -xzvf dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
-    rm dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz
+RUN wget -O /tmp/dockerize.tar.gz https://github.com/jwilder/dockerize/releases/download/$DOCKERIZE_VERSION/dockerize-linux-amd64-$DOCKERIZE_VERSION.tar.gz && \
+    echo "f3d77239644ecaa53b762c9bfce8e9547399eea4 /tmp/dockerize.tar.gz" | sha1sum -c - && \
+    tar -C /usr/local/bin -xzvf /tmp/dockerize.tar.gz && \
+    rm /tmp/dockerize.tar.gz
 
 RUN mkdir /var/run/mysqld && \
     rm -rf /var/lib/mysql/* && \

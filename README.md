@@ -46,6 +46,9 @@
 │   ├── production                  # настройки production-окружения
 │   │   └── ...
 │   │
+│   ├── testing                     # настройки testing-окружения
+│   │   └── ...
+│   │
 │   └── <environment>               # настройки других окружений
 │       └── ...
 │
@@ -54,11 +57,13 @@
 │   │   ├── index.php
 │   │   └── ...
 │   │
-│   └── bootstrap.sh                # скрипт, выполняющийся перед запуском приложения
+│   ├── bootstrap.sh                # скрипт, выполняющийся перед запуском приложения
+│   └── ...
 │
-├── base.yml                        # базовая конфигурация docker-compose
+├── base.yml                        # базовая конфигурация docker-compose, от которой наследуются конфигурации окружений
 ├── development.yml                 # конфигурация docker-compose development-окружения
 ├── production.yml                  # конфигурация docker-compose production-окружения
+├── testing.yml                     # конфигурация docker-compose testing-окружения
 └── <environment>.yml               # конфигурация docker-compose других окружений
 ```
 

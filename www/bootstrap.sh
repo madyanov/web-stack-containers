@@ -1,9 +1,11 @@
 #!/bin/bash
 
 echo "Waiting for services..."
+php wait_for_services.php
 
-while ! nc -z "$MYSQL_HOST"     "$MYSQL_PORT";      do sleep 0.1; done
-while ! nc -z "$MEMCACHED_HOST" "$MEMCACHED_PORT";  do sleep 0.1; done
-while ! nc -z "$REDIS_HOST"     "$REDIS_PORT";      do sleep 0.1; done
-
-echo "Done!"
+if [ "$ENVIRONMENT" = "testing" ]; then
+    echo "CLEAR DATABASE"
+    echo "RUN TESTS"
+else
+    exec "$@"
+fi

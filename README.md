@@ -69,18 +69,28 @@
 
 ### Установка и запуск
 
-```
+```bash
 $ git clone https://github.com/madyanov/web-stack-containers
 $ cd web-stack-containers
 ```
 
-```
+```bash
 $ ./start.sh development ../path-to-app-www-dir
 ```
 
 Первый аргумент – название используемого окружения из папки `environments`.
 
 Второй агрумент – путь до кода приложения (по умолчанию `./www`).
+
+### Перезапуск и остановка
+
+```bash
+$ ./restart.sh development
+```
+
+```bash
+$ ./stop.sh development
+```
 
 ### Примечания
 

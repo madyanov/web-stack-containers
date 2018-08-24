@@ -16,7 +16,8 @@ RUN mkdir /var/run/mysqld && \
     rm -rf /var/lib/mysql/* && \
     chown -R mysql:mysql /var/run/mysqld /var/lib/mysql
 
-RUN apt-get clean && \
+RUN apt-get purge -y --auto-remove wget && \
+    apt-get clean && \
     apt-get purge && \
     rm -rf /tmp/* /var/tmp/* && \
     rm -rf /var/lib/apt/lists/*

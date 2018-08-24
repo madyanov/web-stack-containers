@@ -22,8 +22,9 @@ RUN apt-get install -y --no-install-recommends \
 
 RUN wget -O /tmp/composer-setup.php https://getcomposer.org/installer && \
     wget -O /tmp/composer-setup.sig https://composer.github.io/installer.sig && \
-    php -r "if (hash('SHA384', file_get_contents('/tmp/composer-setup.php')) !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid installer' . PHP_EOL; exit(1); }" && \
-    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer
+    php -r "if (hash_file('SHA384', '/tmp/composer-setup.php') !== trim(file_get_contents('/tmp/composer-setup.sig'))) { unlink('/tmp/composer-setup.php'); echo 'Invalid composer installer' . PHP_EOL; exit(1); }" && \
+    php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
+    rm /tmp/composer-setup.php /tmp/composer-setup.sig
 
 RUN mkdir /var/run/php && \
     rm -rf /etc/php/7.0/fpm/pool.d/*

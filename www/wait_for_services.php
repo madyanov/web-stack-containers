@@ -10,7 +10,7 @@ $redis = new Redis();
 for ($i = 0; $i < 30; ++$i) {
     if (!$mysqlReady) {
         try {
-            $mysql = new PDO(
+            new PDO(
                 'mysql:host=' . getenv('MYSQL_HOST') . ';port=' . getenv('MYSQL_PORT') . ';dbname=' . getenv('MYSQL_DATABASE'),
                 getenv('MYSQL_USER'),
                 getenv('MYSQL_PASSWORD')
@@ -24,7 +24,8 @@ for ($i = 0; $i < 30; ++$i) {
 
     if (!$memcachedReady) {
         try {
-            $memcachedReady = $memcached->addServer(getenv('MEMCACHED_HOST'), getenv('MEMCACHED_PORT'));
+            $memcached->addServer(getenv('MEMCACHED_HOST'), getenv('MEMCACHED_PORT'));
+            $memcachedReady = $memcached->getStats() !== false;
         } catch (Exception $e) {
             $memcachedReady = false;
         }

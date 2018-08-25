@@ -10,4 +10,4 @@ RUN apt-get clean && \
     rm -rf /tmp/* /var/tmp/* && \
     rm -rf /var/lib/apt/lists/*
 
-CMD ["memcached", "-u", "memcache", "-m", "128"]
+CMD ["memcached", "-u", "memcache"]

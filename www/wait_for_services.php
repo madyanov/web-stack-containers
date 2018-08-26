@@ -7,11 +7,14 @@ $redisReady = false;
 $memcached = new Memcached();
 $redis = new Redis();
 
-for ($i = 0; $i < 30; ++$i) {
+$timeout = getenv('APP_SERVICES_TIMEOUT') ? getenv('APP_SERVICES_TIMEOUT') : 30;
+
+for ($i = 0; $i < $timeout; ++$i) {
     if (!$mysqlReady) {
         try {
             new PDO(
-                'mysql:host=' . getenv('MYSQL_HOST') . ';port=' . getenv('MYSQL_PORT') . ';dbname=' . getenv('MYSQL_DATABASE'),
+                'mysql:host=' . getenv('MYSQL_HOST') . ';port=' . getenv('MYSQL_PORT') .
+                    ';dbname=' . getenv('MYSQL_DATABASE'),
                 getenv('MYSQL_USER'),
                 getenv('MYSQL_PASSWORD')
             );

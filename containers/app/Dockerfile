@@ -47,7 +47,7 @@ RUN wget -O /tmp/phpunit.phar https://phar.phpunit.de/phpunit.phar && \
 RUN mkdir /var/run/php && \
     rm -rf /etc/php/7.2/fpm/pool.d/*
 
-RUN apt-get purge -y --auto-remove apt-transport-https dirmngr gnupg wget && \
+RUN apt-get purge -y --auto-remove apt-transport-https apt-transport-https ca-certificates dirmngr gnupg wget && \
     apt-get clean && \
     apt-get purge && \
     rm -rf /tmp/* /var/tmp/* && \

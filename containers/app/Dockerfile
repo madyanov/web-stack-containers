@@ -7,9 +7,7 @@ RUN apt-get update
 RUN apt-get install -y --no-install-recommends \
     apt-transport-https \
     ca-certificates \
-    # dirmngr \
     git \
-    # gnupg \
     unzip \
     wget \
     zip
@@ -36,18 +34,10 @@ RUN wget -O /tmp/composer-setup.php https://getcomposer.org/installer && \
     php /tmp/composer-setup.php --install-dir=/usr/local/bin --filename=composer && \
     rm /tmp/composer-setup.php /tmp/composer-setup.sig
 
-# RUN wget -O /tmp/phpunit.phar https://phar.phpunit.de/phpunit.phar && \
-#     wget -O /tmp/phpunit.phar.asc https://phar.phpunit.de/phpunit.phar.asc && \
-#     gpg --keyserver pgp.uni-mainz.de --recv-keys 0x4AA394086372C20A && \
-#     gpg /tmp/phpunit.phar.asc && \
-#     chmod +x /tmp/phpunit.phar && \
-#     mv /tmp/phpunit.phar /usr/local/bin/phpunit && \
-#     rm /tmp/phpunit.phar.asc
-
 RUN mkdir /var/run/php && \
     rm -rf /etc/php/7.2/fpm/pool.d/*
 
-RUN apt-get purge -y --auto-remove apt-transport-https apt-transport-https ca-certificates dirmngr gnupg wget && \
+RUN apt-get purge -y --auto-remove apt-transport-https wget && \
     apt-get clean && \
     apt-get purge && \
     rm -rf /tmp/* /var/tmp/* && \

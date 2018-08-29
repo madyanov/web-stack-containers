@@ -14,55 +14,57 @@
 
 ```
 .
-├── containers                      # Dockerfile-ы контейнров
+├── containers                              # Dockerfile-ы контейнров
 │   └── ...
 │
-├── environments                    # настройки окружений
-│   ├── development                 # настройки development-окружения
+├── environments                            # настройки окружений
+│   ├── development                         # настройки development-окружения
 │   │   ├── app
-│   │   │   ├── app.env             # переменные окружения, доступные приложению
-│   │   │   ├── fpm-global.conf     # настройки PHP-FPM
-│   │   │   ├── fpm-www.conf        # настройки пула www
-│   │   │   └── php.ini             # настройки PHP
+│   │   │   ├── scripts
+│   │   │   │   ├── bootstra.sh             # скрипт, выполняющийся перед запуском приложения
+│   │   │   │   ├── wait-for-services.php   # скрипт, ожидающий запуска всех сервисов
+│   │   │   │   └── ...
+│   │   │   │
+│   │   │   ├── app.env                     # переменные окружения, доступные приложению
+│   │   │   ├── fpm-global.conf             # настройки PHP-FPM
+│   │   │   ├── fpm-www.conf                # настройки пула www
+│   │   │   └── php.ini                     # настройки PHP
 │   │   │
 │   │   ├── memcached
-│   │   │   └──memcached.conf       # настройки Memcached
+│   │   │   └──memcached.conf               # настройки Memcached
 │   │   │
 │   │   ├── mysql
-│   │   │   ├── mysql.env           # переменные окружения MySQL, доступные приложению (user, password, database)
-│   │   │   └── server.cnf          # настройки MySQL
+│   │   │   ├── mysql.env                   # переменные окружения MySQL, доступные приложению (user, password, database)
+│   │   │   └── server.cnf                  # настройки MySQL
 │   │   │
 │   │   ├── nginx
-│   │   │   ├── nginx.conf          # настройки nginx
-│   │   │   └── sites               # настройки сайтов
+│   │   │   ├── nginx.conf                  # настройки nginx
+│   │   │   └── sites                       # настройки сайтов
 │   │   │       ├── app.conf
 │   │   │       └── ...
 │   │   │
 │   │   └──redis
-│   │       └── redis.conf          # настройки Redis
+│   │       └── redis.conf                  # настройки Redis
 │   │
-│   ├── production                  # настройки production-окружения
+│   ├── production                          # настройки production-окружения
 │   │   └── ...
 │   │
-│   ├── testing                     # настройки testing-окружения
+│   ├── testing                             # настройки testing-окружения
 │   │   └── ...
 │   │
-│   └── <environment>               # настройки других окружений
+│   └── <environment>                       # настройки других окружений
 │       └── ...
 │
-├── www                             # код приложения
-│   ├── public
-│   │   ├── index.php
-│   │   └── ...
-│   │
-│   ├── bootstrap.sh                # скрипт, выполняющийся перед запуском приложения
-│   └── ...
+├── www                                     # код приложения
+│   └── public
+│       ├── index.php
+│       └── ...
 │
-├── base.yml                        # базовая конфигурация docker-compose, от которой наследуются конфигурации окружений
-├── development.yml                 # конфигурация docker-compose development-окружения
-├── production.yml                  # конфигурация docker-compose production-окружения
-├── testing.yml                     # конфигурация docker-compose testing-окружения
-└── <environment>.yml               # конфигурация docker-compose других окружений
+├── base.yml                                # базовая конфигурация docker-compose, от которой наследуются конфигурации окружений
+├── development.yml                         # конфигурация docker-compose development-окружения
+├── production.yml                          # конфигурация docker-compose production-окружения
+├── testing.yml                             # конфигурация docker-compose testing-окружения
+└── <environment>.yml                       # конфигурация docker-compose других окружений
 ```
 
 ## Установка и запуск

@@ -8,6 +8,7 @@ services:
             - memcached
             - redis
         volumes:
+            - ./environments/${ENVIRONMENT}/app/scripts:/scripts
             - ./environments/${ENVIRONMENT}/app/fpm-global.conf:/etc/php/7.2/fpm/pool.d/00-fpm-global.conf
             - ./environments/${ENVIRONMENT}/app/fpm-www.conf:/etc/php/7.2/fpm/pool.d/10-fpm-www.conf
             - ./environments/${ENVIRONMENT}/app/php.ini:/etc/php/7.2/fpm/conf.d/00-php.ini

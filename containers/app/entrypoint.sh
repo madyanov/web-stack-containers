@@ -2,9 +2,9 @@
 
 cd /var/www
 
-if [ -f bootstrap.sh ]; then
-    chmod +x bootstrap.sh
-    . bootstrap.sh
+if [ -f /scripts/bootstrap.sh ]; then
+    chmod +x /scripts/*
+    . /scripts/bootstrap.sh
 else
     exec "$@"
 fi

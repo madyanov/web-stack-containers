@@ -1,7 +1,7 @@
 #!/bin/bash
 
 echo "Waiting for services..."
-php wait_for_services.php
+./wait-for-services.php
 
 if [ "$ENVIRONMENT" = "testing" ]; then
     echo "Run tests"

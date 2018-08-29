@@ -1,5 +1,7 @@
 #!/bin/bash
 
+composer install --no-plugins --no-scripts
+
 echo "Waiting for services..."
 /scripts/wait-for-services.php
 

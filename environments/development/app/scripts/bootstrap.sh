@@ -7,7 +7,7 @@ echo "Waiting for services..."
 
 if [ "$ENVIRONMENT" = "testing" ]; then
     echo "Run tests"
-    phpunit --version
+    ./vendor/bin/phpunit --version
 else
     exec "$@"
 fi

@@ -16,7 +16,7 @@ function abspath() {
 }
 
 export ENVIRONMENT="$1"
-export APP_ROOT=$(abspath "${2:-$(pwd www)/www}")
+export APP_ROOT="$(abspath "${2:-$(pwd ./www)/www}")"
 export COMPOSE_PROJECT_NAME="$ENVIRONMENT"
 
 echo "$APP_ROOT" > ".pid-$ENVIRONMENT"

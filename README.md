@@ -19,13 +19,13 @@
 │
 ├── environments                            # настройки окружений
 │   ├── development                         # настройки development-окружения
-│   │   ├── app
+│   │   ├── application
 │   │   │   ├── scripts
 │   │   │   │   ├── bootstra.sh             # скрипт, выполняющийся перед запуском приложения
 │   │   │   │   ├── wait-for-services.php   # скрипт, ожидающий запуска всех сервисов
 │   │   │   │   └── ...
 │   │   │   │
-│   │   │   ├── app.env                     # переменные окружения, доступные приложению
+│   │   │   ├── application.env             # переменные окружения, доступные приложению
 │   │   │   ├── fpm-global.conf             # настройки PHP-FPM
 │   │   │   ├── fpm-www.conf                # настройки пула www
 │   │   │   └── php.ini                     # настройки PHP
@@ -40,7 +40,7 @@
 │   │   ├── nginx
 │   │   │   ├── nginx.conf                  # настройки nginx
 │   │   │   └── sites                       # настройки сайтов
-│   │   │       ├── app.conf
+│   │   │       ├── application.conf
 │   │   │       └── ...
 │   │   │
 │   │   └── redis
@@ -75,7 +75,7 @@ $ cd web-stack-containers
 ```
 
 ```bash
-$ ./start.sh development ../path-to-app-www-dir
+$ ./start.sh development ../path-to-application-dir
 ```
 
 Первый аргумент – название используемого окружения из папки `environments`.
@@ -101,5 +101,5 @@ $ ./stop.sh development
     ========================
     ```
 - Точка входа (`index.php`) обязательно должна быть в папке `public` в папке приложения (по умолчанию `www/public/index.php`).
-- Сразу перед запуском приложения выполняется скрипт `environments/<environment>/app/scripts/bootstrap.sh`. Его можно использоваь для ожидания запуска сервисов, установки зависимостей `composer`, тестов и прочего).
-- Приложению доступна переменная окружения `ENVIRONMENT`, равная названию используемого окружения (`development`, `production`, ...), а также любые переменные окружения из файла `environments/<environment>/app/app.env`.
+- Сразу перед запуском приложения выполняется скрипт `environments/<environment>/application/scripts/bootstrap.sh`. Его можно использоваь для ожидания запуска сервисов, установки зависимостей `composer`, тестов и прочего).
+- Приложению доступна переменная окружения `ENVIRONMENT`, равная названию используемого окружения (`development`, `production`, ...), а также любые переменные окружения из файла `environments/<environment>/application/application.env`.

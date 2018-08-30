@@ -1,20 +1,20 @@
 version: "3"
 services:
-    app:
-        image: app
-        build: ./containers/app
+    application:
+        image: application
+        build: ./containers/application
         links:
             - mysql
             - memcached
             - redis
         volumes:
-            - ./environments/${ENVIRONMENT}/app/scripts:/scripts
-            - ./environments/${ENVIRONMENT}/app/fpm-global.conf:/etc/php/7.2/fpm/pool.d/00-fpm-global.conf
-            - ./environments/${ENVIRONMENT}/app/fpm-www.conf:/etc/php/7.2/fpm/pool.d/10-fpm-www.conf
-            - ./environments/${ENVIRONMENT}/app/php.ini:/etc/php/7.2/fpm/conf.d/00-php.ini
+            - ./environments/${ENVIRONMENT}/application/scripts:/scripts
+            - ./environments/${ENVIRONMENT}/application/fpm-global.conf:/etc/php/7.2/fpm/pool.d/00-fpm-global.conf
+            - ./environments/${ENVIRONMENT}/application/fpm-www.conf:/etc/php/7.2/fpm/pool.d/10-fpm-www.conf
+            - ./environments/${ENVIRONMENT}/application/php.ini:/etc/php/7.2/fpm/conf.d/00-php.ini
             - ${APP_ROOT}:/var/www
         env_file:
-            - ./environments/${ENVIRONMENT}/app/app.env
+            - ./environments/${ENVIRONMENT}/application/application.env
             - ./environments/${ENVIRONMENT}/mysql/mysql.env
         environment:
             - ENVIRONMENT=${ENVIRONMENT}
@@ -35,7 +35,7 @@ services:
         image: nginx
         build: ./containers/nginx
         links:
-            - app
+            - application
         volumes:
             - ./environments/${ENVIRONMENT}/nginx/nginx.conf:/etc/nginx/nginx.conf
             - ./environments/${ENVIRONMENT}/nginx/sites:/etc/nginx/conf.d:ro

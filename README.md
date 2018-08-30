@@ -31,7 +31,7 @@
 │   │   │   └── php.ini                     # настройки PHP
 │   │   │
 │   │   ├── memcached
-│   │   │   └──memcached.conf               # настройки Memcached
+│   │   │   └── memcached.conf               # настройки Memcached
 │   │   │
 │   │   ├── mysql
 │   │   │   ├── mysql.env                   # переменные окружения MySQL, доступные приложению (user, password, database)
@@ -43,7 +43,7 @@
 │   │   │       ├── app.conf
 │   │   │       └── ...
 │   │   │
-│   │   └──redis
+│   │   └── redis
 │   │       └── redis.conf                  # настройки Redis
 │   │
 │   ├── production                          # настройки production-окружения

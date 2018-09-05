@@ -1,53 +1,53 @@
 version: "3"
 services:
-    application:
-        image: application
-        build: ./containers/application
-        links:
-            - mysql
-            - memcached
-            - redis
-        volumes:
-            - ./environments/${ENVIRONMENT}/application/scripts:/scripts
-            - ./environments/${ENVIRONMENT}/application/fpm-global.conf:/etc/php/7.2/fpm/pool.d/00-fpm-global.conf
-            - ./environments/${ENVIRONMENT}/application/fpm-www.conf:/etc/php/7.2/fpm/pool.d/10-fpm-www.conf
-            - ./environments/${ENVIRONMENT}/application/php.ini:/etc/php/7.2/fpm/conf.d/00-php.ini
-            - ${APP_ROOT}:/var/www
-        env_file:
-            - ./environments/${ENVIRONMENT}/application/application.env
-            - ./environments/${ENVIRONMENT}/mysql/mysql.env
-        environment:
-            - ENVIRONMENT=${ENVIRONMENT}
-    memcached:
-        image: memcached
-        build: ./containers/memcached
-        volumes:
-            - ./environments/${ENVIRONMENT}/memcached/memcached.conf:/etc/memcached.conf
-    mysql:
-        image: mysql
-        build: ./containers/mysql
-        volumes:
-            - ./environments/${ENVIRONMENT}/mysql/server.cnf:/etc/mysql/mariadb.conf.d/90-server.cnf
-            - mysql_data:/var/lib/mysql
-        env_file:
-            - ./environments/${ENVIRONMENT}/mysql/mysql.env
-    nginx:
-        image: nginx
-        build: ./containers/nginx
-        links:
-            - application
-        volumes:
-            - ./environments/${ENVIRONMENT}/nginx/nginx.conf:/etc/nginx/nginx.conf
-            - ./environments/${ENVIRONMENT}/nginx/sites:/etc/nginx/conf.d:ro
-            - ${APP_ROOT}:/var/www:ro
-            - nginx_cache:/var/cache/nginx
-    redis:
-        image: redis
-        build: ./containers/redis
-        volumes:
-            - ./environments/${ENVIRONMENT}/redis/redis.conf:/etc/redis/redis.conf
-            - redis_data:/var/lib/redis
+  application:
+    image: application
+    build: ./containers/application
+    links:
+      - mysql
+      - memcached
+      - redis
+    volumes:
+      - ./environments/${ENVIRONMENT}/application/scripts:/scripts
+      - ./environments/${ENVIRONMENT}/application/fpm-global.conf:/etc/php/7.2/fpm/pool.d/00-fpm-global.conf
+      - ./environments/${ENVIRONMENT}/application/fpm-www.conf:/etc/php/7.2/fpm/pool.d/10-fpm-www.conf
+      - ./environments/${ENVIRONMENT}/application/php.ini:/etc/php/7.2/fpm/conf.d/00-php.ini
+      - ${APP_ROOT}:/var/www
+    env_file:
+      - ./environments/${ENVIRONMENT}/application/application.env
+      - ./environments/${ENVIRONMENT}/mysql/mysql.env
+    environment:
+      - ENVIRONMENT=${ENVIRONMENT}
+  memcached:
+      image: memcached
+      build: ./containers/memcached
+      volumes:
+        - ./environments/${ENVIRONMENT}/memcached/memcached.conf:/etc/memcached.conf
+  mysql:
+    image: mysql
+    build: ./containers/mysql
+    volumes:
+      - ./environments/${ENVIRONMENT}/mysql/server.cnf:/etc/mysql/mariadb.conf.d/90-server.cnf
+      - mysql_data:/var/lib/mysql
+    env_file:
+      - ./environments/${ENVIRONMENT}/mysql/mysql.env
+  nginx:
+    image: nginx
+    build: ./containers/nginx
+    links:
+      - application
+    volumes:
+      - ./environments/${ENVIRONMENT}/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - ./environments/${ENVIRONMENT}/nginx/sites:/etc/nginx/conf.d:ro
+      - ${APP_ROOT}:/var/www:ro
+      - nginx_cache:/var/cache/nginx
+  redis:
+    image: redis
+    build: ./containers/redis
+    volumes:
+      - ./environments/${ENVIRONMENT}/redis/redis.conf:/etc/redis/redis.conf
+      - redis_data:/var/lib/redis
 volumes:
-    mysql_data:
-    nginx_cache:
-    redis_data:
+  mysql_data:
+  nginx_cache:
+  redis_data:

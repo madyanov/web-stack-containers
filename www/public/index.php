@@ -10,18 +10,18 @@ $memcachedReady = true;
 $redisReady = true;
 
 try {
-    new PDO(
+    new \PDO(
         'mysql:host=' . getenv('MYSQL_HOST') . ';port=' . getenv('MYSQL_PORT') . ';dbname=' . getenv('MYSQL_DATABASE'),
         getenv('MYSQL_USER'),
         getenv('MYSQL_PASSWORD'),
-        [ PDO::ATTR_TIMEOUT => 1 ]
+        [ \PDO::ATTR_TIMEOUT => 1 ]
     );
-} catch (Exception $e) {
-    trigger_error($e->getMessage(), E_USER_WARNING);
+} catch (\Exception $exception) {
+    trigger_error($exception->getMessage(), E_USER_WARNING);
     $mysqlReady = false;
 }
 
-$memcached = new Memcached();
+$memcached = new \Memcached();
 $memcached->addServer(getenv('MEMCACHED_HOST'), getenv('MEMCACHED_PORT'));
 $memcached->set('test', 'ok', 10);
 
@@ -29,7 +29,7 @@ if ($memcached->get('test') !== 'ok') {
     $memcachedReady = false;
 }
 
-$redis = new Redis();
+$redis = new \Redis();
 $redis->connect(getenv('REDIS_HOST'), getenv('REDIS_PORT'), 1);
 $redis->set('test', 'ok', 10);
 

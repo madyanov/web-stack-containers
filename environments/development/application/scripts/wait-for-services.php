@@ -8,7 +8,7 @@ $redisReady = false;
 $memcached = new \Memcached();
 $redis = new \Redis();
 
-$timeout = getenv('APP_SERVICES_TIMEOUT') ?? 60;
+$timeout = getenv('APPLICATION_SERVICES_TIMEOUT') ?? 60;
 
 for ($i = 0; $i < $timeout; ++$i) {
     if (!$mysqlReady) {
